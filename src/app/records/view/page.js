@@ -59,7 +59,7 @@ export default function ViewProgress() {
         <h1 className="text-4xl font-bold mb-8 text-center text-yellow-400">Your Journey</h1>
         <p className="text-center text-sm mb-6 italic">"The successful warrior is the average man, with laser-like focus." - Bruce Lee</p>
         {records.length === 0 ? (
-          <p className="text-center">No records found. First Practise chey ra puka!</p>
+          <p className="text-center">No records found. First Practise chey</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full table-auto text-center text-sm bg-gray-800 shadow-lg rounded-lg">
