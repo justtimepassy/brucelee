@@ -17,7 +17,7 @@ export default function Dashboard() {
         const { data: authData, error: authError } = await supabase.auth.getUser();
         if (authError) {
           console.error('Auth error:', authError.message);
-          setError(null);
+          setError(null); // Ignore authError as we might be on a public route
           setLoading(false);
           return;
         }
@@ -66,13 +66,15 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white bg-cover bg-center" style={{backgroundImage: "url('/bruce-lee-background.jpg')"}}>
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white bg-cover bg-center" style={{ backgroundImage: "url('/bruce-lee-background.jpg')" }}>
       {user && <Navbar onLogout={handleLogout} />}
       <div className="flex flex-col items-center justify-center flex-1 bg-black bg-opacity-70 p-8">
         {user ? (
           <>
             <h1 className="text-4xl font-bold mb-6 text-yellow-400">Welcome, {user.name}!</h1>
-            <p className="text-xl mb-8 italic">"The successful warrior is the average man, with laser-like focus." - Bruce Lee</p>
+            <p className="text-xl mb-8 italic">
+              {`"The successful warrior is the average man, with laser-like focus." - Bruce Lee`}
+            </p>
             <div className="space-y-6">
               <a href="/records/create" className="block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-full transition duration-300 text-center">
                 Log Your Practice
@@ -86,7 +88,9 @@ export default function Dashboard() {
         ) : (
           <div className="text-center">
             <h1 className="text-4xl font-bold mb-6 text-yellow-400">Welcome to Jeet Kune Do Tracker</h1>
-            <p className="text-xl mb-8 italic">"Knowing is not enough, we must apply. Willing is not enough, we must do." - Bruce Lee</p>
+            <p className="text-xl mb-8 italic">
+              {`"Knowing is not enough, we must apply. Willing is not enough, we must do." - Bruce Lee`}
+            </p>
             <div className="space-y-6">
               <a href="/auth/signin" className="block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-full transition duration-300">
                 Enter the Dojo

@@ -15,20 +15,19 @@ export default function ViewProgress() {
     const fetchUserAndRecords = async () => {
       setLoading(true);
       try {
-        const {
-          data: { user },
-          error: authError
-        } = await supabase.auth.getUser();
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
         if (authError || !user) {
           setError('User not authenticated.');
           setLoading(false);
           return;
         }
+
         const { data: records, error: recordsError } = await supabase
           .from('records')
           .select('*')
           .eq('user_id', user.id)
           .order('date', { ascending: false });
+
         if (recordsError) {
           setError(recordsError.message);
         } else {
@@ -41,6 +40,7 @@ export default function ViewProgress() {
         setLoading(false);
       }
     };
+
     fetchUserAndRecords();
   }, [router]);
 
@@ -53,7 +53,7 @@ export default function ViewProgress() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white bg-cover bg-center" style={{backgroundImage: "url('/bruce-lee-background.jpg')"}}>
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white bg-cover bg-center" style={{ backgroundImage: "url('/bruce-lee-background.jpg')" }}>
       <Navbar />
       <div className="container mx-auto p-6 bg-black bg-opacity-70">
         <h1 className="text-4xl font-bold mb-8 text-center text-yellow-400">Your Journey</h1>
@@ -78,14 +78,30 @@ export default function ViewProgress() {
               <tbody>
                 {records.map((record) => (
                   <tr key={record.id} className="hover:bg-gray-700 transition">
-                    <td className="border px-4 py-2 text-yellow-400">{new Date(record.date).toLocaleDateString()}</td>
-                    <td className="border px-4 py-2 text-gray-300">{record.straight_jabs}</td>
-                    <td className="border px-4 py-2 text-gray-300">{record.straight_cross}</td>
-                    <td className="border px-4 py-2 text-gray-300">{record.straight_jab_cross}</td>
-                    <td className="border px-4 py-2 text-gray-300">{record.side_jabs}</td>
-                    <td className="border px-4 py-2 text-gray-300">{record.side_cross}</td>
-                    <td className="border px-4 py-2 text-gray-300">{record.side_jab_cross}</td>
-                    <td className="border px-4 py-2 text-gray-300">{record.steady_jab_cross}</td>
+                    <td className="border px-4 py-2 text-yellow-400">
+                      {new Date(record.date).toLocaleDateString()}
+                    </td>
+                    <td className="border px-4 py-2 text-gray-300">
+                      {record.straight_jabs}
+                    </td>
+                    <td className="border px-4 py-2 text-gray-300">
+                      {record.straight_cross}
+                    </td>
+                    <td className="border px-4 py-2 text-gray-300">
+                      {record.straight_jab_cross}
+                    </td>
+                    <td className="border px-4 py-2 text-gray-300">
+                      {record.side_jabs}
+                    </td>
+                    <td className="border px-4 py-2 text-gray-300">
+                      {record.side_cross}
+                    </td>
+                    <td className="border px-4 py-2 text-gray-300">
+                      {record.side_jab_cross}
+                    </td>
+                    <td className="border px-4 py-2 text-gray-300">
+                      {record.steady_jab_cross}
+                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -31,10 +31,12 @@ export default function Register() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white bg-cover bg-center" style={{backgroundImage: "url('/bruce-lee-background.jpg')"}}>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white bg-cover bg-center" style={{ backgroundImage: "url('/bruce-lee-background.jpg')" }}>
       <div className="bg-black bg-opacity-70 p-8 rounded-lg shadow-xl w-full max-w-md">
         <h1 className="text-3xl font-bold mb-6 text-yellow-400 text-center">Begin Your Journey</h1>
-        <p className="text-center text-sm mb-6 italic">"The key to immortality is first living a life worth remembering." - Bruce Lee</p>
+        <p className="text-center text-sm mb-6 italic">
+          {`"The key to immortality is first living a life worth remembering." - Bruce Lee`}
+        </p>
         <form onSubmit={handleRegister} className="space-y-6">
           <div>
             <label className="block text-sm font-medium mb-2" htmlFor="name">Name</label>
